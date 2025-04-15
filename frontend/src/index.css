@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply antialiased text-text-dark dark:text-text-light touch-manipulation;
+  }
+
+  /* Improve touch targets */
+  button, a, input, select, textarea {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Improve form elements on mobile */
+  input, select, textarea {
+    @apply text-base;
+    font-size: 16px !important; /* Prevent zoom on iOS */
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] flex items-center justify-center;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-white px-4 py-2 rounded-md hover:bg-secondary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] flex items-center justify-center;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 rounded-md border border-border focus:outline-none focus:ring-2 focus:ring-primary/20 dark:bg-background-dark dark:border-primary/20 min-h-[44px];
+  }
+
+  /* Mobile-optimized table container */
+  .table-container {
+    @apply w-full overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mobile-optimized cards */
+  .mobile-card {
+    @apply bg-surface rounded-lg shadow-soft p-4 md:p-6 transition-transform active:scale-[0.98];
+  }
+
+  /* Bottom sheet for mobile */
+  .bottom-sheet {
+    @apply fixed inset-x-0 bottom-0 z-50 bg-surface rounded-t-2xl shadow-medium transform transition-transform duration-300 ease-in-out;
+  }
+
+  .bottom-sheet-handle {
+    @apply absolute top-3 left-1/2 -translate-x-1/2 w-12 h-1.5 rounded-full bg-border dark:bg-primary/20;
+  }
+
+  /* Mobile-optimized grid */
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+
+  /* Touch-friendly select */
+  .touch-select {
+    @apply appearance-none bg-surface border border-border dark:border-primary/20 rounded-lg py-2 px-4 pr-8 min-h-[44px];
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B4F3B' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+  }
+
+  /* Mobile-optimized charts container */
+  .chart-container {
+    @apply w-full overflow-hidden rounded-lg bg-surface p-4 md:p-6;
+    min-height: 300px;
+    touch-action: pan-y pinch-zoom;
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Safe area padding for modern iOS devices */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+}
